@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 function Navbar() {
     return (
 
-        <div className="navbar mb-2 shadow-lg bg-neutral text-neutral-content rounded-none ">
+        <div className="navbar pb-2 shadow-lg bg-neutral text-neutral-content rounded-none ">
             <div className="px-2 mx-2 navbar-start">
                 <span style={{ fontFamily: "Yuji Boku" }} className="text-lg font-bold">
                     <Link to="/home" className="text-primary hover:text-gray-200">
@@ -19,6 +19,9 @@ function Navbar() {
                     </Link>
                     <Link to="/app" className="btn btn-ghost btn-sm rounded-btn hover:bg-gray-500">
                         App
+                    </Link>
+                    <Link to="/assist" className="btn btn-ghost btn-sm rounded-btn hover:bg-gray-500">
+                        Assist
                     </Link>
                     <Link to="/about" className="btn btn-ghost btn-sm rounded-btn hover:bg-gray-500">
                         About
