@@ -9,7 +9,14 @@ import { Message } from "../store/types/chatTypes";
 
 dotenv.config();
 const sendMessage = (body: { sender: string; message: string }) => {
-	return axios.post(RASA_CHAT_URL, body);
+	return axios({
+		method: "POST",
+		url: RASA_CHAT_URL,
+		data: body,
+		headers: {
+			"Access-Control-Allow-Origin": "*",
+		},
+	});
 };
 
 export const useSendMessage = () => {
@@ -25,19 +32,20 @@ export const useSendMessage = () => {
 					"bot"
 				);
 				if (!replyMessage.message && data?.data[i].image) {
-					console.log("Image exists", data.data[i].image);
 					replyMessage.image = data?.data[i].image;
 				}
 				dispatch(actions.chatActions.addMessage(replyMessage));
-				console.log("Bot reply", replyMessage, data?.data);
 				if (replyMessage.message) {
 					window.speechSynthesis.speak(
 						new SpeechSynthesisUtterance(replyMessage.message)
 					);
 				}
 			}
-			if (store.audio.currentURL)
+			if (store.audio.currentURL) {
 				dispatch(actions.audioActions.addPrevURL(store.audio.currentURL));
+				console.log("Prev URL", store.audio.prevURLs);
+			}
+
 			dispatch(actions.audioActions.setURL(false));
 			dispatch(actions.chatActions.setInput(""));
 		},

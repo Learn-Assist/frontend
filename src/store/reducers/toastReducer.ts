@@ -8,11 +8,9 @@ export const toastReducer = (
 ) => {
 	switch (action.type) {
 		case types.ADD_TOAST: {
-			console.log("Reducer payload, state:", action.payload, state);
 			let queueCopy: types.toast[];
 			if (state) queueCopy = [...state];
 			else queueCopy = [];
-			console.log("Queue copy:", queueCopy);
 			queueCopy.push(action.payload);
 			return [...queueCopy];
 		}

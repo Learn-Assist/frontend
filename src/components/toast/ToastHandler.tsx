@@ -12,11 +12,9 @@ function ToastHandler() {
 		if (queue.length > 0) {
 			setTimeout(
 				() => {
-					console.log("Timeout Toast");
 					const queueCopy = [...queue];
 					queueCopy.shift();
 					setQueue(queueCopy);
-					console.log("Queue after shifting", queue);
 				},
 				queue[0].duration === "short" ? 3000 : 5000
 			);

@@ -10,7 +10,6 @@ function Home() {
 	const [res, setres] = useState(false);
 	useEffect(() => {
 		if ("speechSynthesis" in window) {
-			console.log(speak1);
 			var msg = new SpeechSynthesisUtterance();
 			msg.text = speak1;
 			window.speechSynthesis.speak(msg);
@@ -56,7 +55,6 @@ function Home() {
 								stopRecording();
 								// const x = new FormData();
 								// x.append("file", data?.data)
-								// console.log(data, srcAudioURL)
 								// axios.post('http://localhost:3005/audio', x).then(z => {
 								//   setspeak1(z.data)
 								//   setres(true)
@@ -88,7 +86,6 @@ function Home() {
 						onClick={async () => {
 							const x = new FormData();
 							x.append("file", data?.data);
-							console.log(data, srcAudioURL);
 							const z = await axios.post("http://localhost:3005/audio", x);
 							setspeak1(z.data);
 						}}

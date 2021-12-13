@@ -8,7 +8,6 @@ export const audioReducer = (
 ) => {
 	switch (action.type) {
 		case types.SET_URL:
-			console.log("Reduce:", action.payload);
 			return {
 				...state,
 				currentURL: action.payload,

@@ -1,10 +1,54 @@
 
 module.exports = {
-  purge: ['./src/**/*.{js,jsx,ts,tsx}'],
+  purge: {
+    content: ['./src/**/*.{js,jsx,ts,tsx}'],
+    options: {
+      safelist: [
+        /data-theme$/,
+      ]
+    },
+  },
   theme: {
-
+    animation: {
+      'gradient-x': 'gradient-x 8s ease infinite',
+      'gradient-y': 'gradient-y 8s ease infinite',
+      'gradient-xy': 'gradient-xy 15s ease infinite',
+    },
+    'keyframes': {
+      'gradient-y': {
+        '0%, 100%': {
+          'background-size': '400% 400%',
+          'background-position': 'center top'
+        },
+        '50%': {
+          'background-size': '200% 200%',
+          'background-position': 'center center'
+        }
+      },
+      'gradient-x': {
+        '0%, 100%': {
+          'background-size': '200% 200%',
+          'background-position': 'left center'
+        },
+        '50%': {
+          'background-size': '200% 200%',
+          'background-position': 'right center'
+        }
+      },
+      'gradient-xy': {
+        '0%, 100%': {
+          'background-size': '400% 400%',
+          'background-position': 'left center'
+        },
+        '50%': {
+          'background-size': '200% 200%',
+          'background-position': 'right center'
+        }
+      }
+    },
     extend: {
       screens: {
+        'xs': '480px',
         'sm': '640px',
         'md': '768px',
         'lg': '1024px',
@@ -35,9 +79,6 @@ module.exports = {
         '5xl': ['3rem', { lineHeight: '1.25', letterSpacing: '-0.02em' }],
         '6xl': ['3.75rem', { lineHeight: '1.2', letterSpacing: '-0.02em' }],
       },
-      screens: {
-        xs: '480px',
-      },
       borderWidth: {
         3: '3px',
       },
@@ -66,10 +107,10 @@ module.exports = {
   ],
   daisyui: {
     styled: true,
-    theme: 'dark',
+    theme: "light",
     themes:
       [
-        'bumblebee'
+        'bumblebee',
       ]
     ,
     base: true,

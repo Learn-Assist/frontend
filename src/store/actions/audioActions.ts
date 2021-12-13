@@ -2,7 +2,6 @@ import { dispatchAction } from "../types";
 import * as types from "../types/audioTypes";
 
 export const setURL = (url: string | false): dispatchAction => {
-	console.log("setURL action", url);
 	return {
 		type: types.SET_URL,
 		payload: url,

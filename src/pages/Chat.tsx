@@ -58,31 +58,44 @@ function ChatPage() {
 	};
 	return (
 		<div className="h-screen">
-			<div className="w-full fixed bg-primary h-16 pt-4">
+			<div className="flex flex-row w-full fixed bg-primary h-16 pt-4">
 				<Link to="/" className="ml-3 hover:underline">
 					&lt; Home
 				</Link>
+				<div
+					style={{ fontFamily: "Yuji Boku" }}
+					className="mx-auto text-lg font-extrabold"
+				>
+					Learn Assist
+				</div>
 			</div>
+
 			<div className="flex flex-row ">
 				<div
-					style={{ height: window.innerHeight * 0.8 }}
-					className="overflow-y-auto pb-15 mt-16 w-0 invisible lg:visible md:visible xl:visible 2xl:visible 
+					style={{ height: window.innerHeight * 0.85 }}
+					className="overflow-y-auto  mt-16 w-0 invisible lg:visible md:visible xl:visible 2xl:visible 
 								lg:w-1/3 md:w-1/3 xl:w-1/3 2xl:w-1/3
-				 				bg-gray-100 mb-8 flex flex-col scrollbar-hidden"
+				 				 mb-8 flex flex-col scrollbar-hidden"
 				>
-					<div className="h-full mt-auto p-4 font-bold ">
+					<div className="h-full mt-auto p-4 font-bold mb-12">
 						<div className="font-bold">Your inputs:</div>
 						{store.audio.prevURLs &&
-							store.audio.prevURLs.map((url: string) => (
-								<audio
-									className="rounded-lg mb-5 m-3 mr-5 w-10/12"
-									src={url}
-									controls
-								/>
-							))}
+							store.audio.prevURLs.map((url: any, index) => {
+								if (url) {
+									console.log("url", url);
+									return (
+										<audio
+											key={index}
+											className="rounded-lg mb-5 m-3 mr-5 w-10/12"
+											src={url}
+											controls
+										/>
+									);
+								} else return null;
+							})}
 					</div>
 				</div>
-				<div className="p-4 mt-16 w-full lg:w-2/3 md:w-2/3 xl:w-2/3 2xl:w-2/3 bg-gray-50 mb-5 border-l-2 border-gray-300">
+				<div className="p-4 mt-16 w-full lg:w-2/3 md:w-2/3 xl:w-2/3 2xl:w-2/3 mb-5 border-l-2 border-primary">
 					<ChatUI />
 				</div>
 			</div>
