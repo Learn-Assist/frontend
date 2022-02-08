@@ -1,14 +1,36 @@
-import { audio } from "./audioTypes";
-import { toast } from "./toastTypes";
+import { toast } from "./toast";
+
+export * from "./Audio";
+export * from "./Chat";
+export * from "./User";
+export * from "./toast";
 
 export interface AppState {
-	user: user;
+	app: {
+		userStatus: string;
+	};
+	user: {
+		uid: string;
+		name: string;
+		email: string;
+		grade: number;
+		age: number;
+		school: string;
+		timeActiveInMinutes: number;
+		createdAt: Date;
+		updatedAt: Date;
+		photoURL: string;
+		tests: Array<any>;
+	};
 	chats: {
 		input: string;
-		messages: message[];
+		messages: [message];
 	};
-	audio: audio;
-	toasts: toast[];
+	audio: {
+		currentURL: any;
+		prevURLs: Array<string>;
+	};
+	toasts: Array<toast>;
 }
 
 export interface ActionCreator {
@@ -31,9 +53,4 @@ export interface message {
 	buttons?: any;
 }
 
-export interface user {
-	id: string;
-	name: string;
-	email?: string;
-	image?: string;
-}
+export type appReducerState = any;

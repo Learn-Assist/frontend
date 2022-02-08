@@ -8,7 +8,7 @@ function ChatUI() {
 	useEffect(() => {
 		const A_LARGE_SCROLL_AMOUNT = 1000000;
 		ref.current.scrollTop = A_LARGE_SCROLL_AMOUNT;
-	}, []);
+	}, [store.chats.messages]);
 
 	return (
 		<>

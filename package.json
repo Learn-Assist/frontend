@@ -13,6 +13,7 @@
 		"axios": "^0.24.0",
 		"daisyui": "^1.16.2",
 		"dotenv": "^10.0.0",
+		"firebase": "^9.6.6",
 		"rasa-webchat": "^1.0.1",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",

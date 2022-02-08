@@ -1,12 +1,11 @@
 import { useContext, useEffect } from "react";
 import StoreProvider, { actions } from "../../store";
-import { toast } from "../../store/types/toastTypes";
+import { toast } from "../../store/types/toast";
 import Toast from "./Toast";
 function ToastHandler() {
 	const { store, dispatch } = useContext(StoreProvider);
 	const queue = store.toasts;
-	const setQueue = (queue: toast[]) =>
-		dispatch(actions.toastActions.setQueue(queue));
+	const setQueue = (queue: toast[]) => dispatch(actions.toast.setQueue(queue));
 
 	useEffect(() => {
 		if (queue.length > 0) {

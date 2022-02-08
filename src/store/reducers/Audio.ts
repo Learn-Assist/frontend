@@ -1,11 +1,8 @@
 import { initialState } from "..";
 import { dispatchAction } from "../types";
-import * as types from "../types/audioTypes";
-
-export const audioReducer = (
-	state = initialState.audio,
-	action: dispatchAction
-) => {
+import * as types from "../types/Audio";
+import { CLEAR_ALL } from "../types";
+const audioReducer = (state = initialState.audio, action: dispatchAction) => {
 	switch (action.type) {
 		case types.SET_URL:
 			return {
@@ -19,7 +16,7 @@ export const audioReducer = (
 				prevURLs: action.payload,
 			};
 		case types.ADD_PREV_URL:
-			if (!state.prevURLs.includes(action.payload))
+			if (!state.prevURLs.includes(action.payload as never))
 				return {
 					...state,
 					prevURLs: [...state.prevURLs, action.payload],
@@ -27,8 +24,14 @@ export const audioReducer = (
 			else return state;
 		case types.SET_AUDIO:
 			return action.payload;
-
+		case CLEAR_ALL:
+			return {
+				currentURL: "",
+				prevURLs: [],
+			};
 		default:
 			return state;
 	}
 };
+
+export default audioReducer;

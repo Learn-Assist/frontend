@@ -1,7 +1,8 @@
-import { dispatchAction } from "../types";
-import { audioReducer } from "./audioReducer";
-import { chatReducer } from "./chatReducer";
-import { toastReducer } from "./toastReducer";
+import { dispatchAction, appReducerState } from "../types";
+import chat from "./Chat";
+import audio from "./Audio";
+import toast from "./Toast";
+import user from "./User";
 
 const combineReducers = (slices: any) => (state: any, action: dispatchAction) =>
 	Object.keys(slices).reduce(
@@ -13,10 +14,27 @@ const combineReducers = (slices: any) => (state: any, action: dispatchAction) =>
 		state
 	);
 
+const reducer = (
+	state: appReducerState,
+	action: dispatchAction
+): appReducerState => {
+	switch (action.type) {
+		case "SET_USER_STATE":
+			return {
+				...state,
+				userStatus: action.payload,
+			};
+		default:
+			return state;
+	}
+};
+
 const reducers = {
-	chats: chatReducer,
-	audio: audioReducer,
-	toasts: toastReducer,
+	app: reducer,
+	chats: chat,
+	audio: audio,
+	toasts: toast,
+	user: user,
 };
 
 export const rootReducer = combineReducers(reducers);

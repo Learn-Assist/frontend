@@ -1,5 +1,5 @@
 import { dispatchAction, message } from "../types";
-import * as types from "../types/chatTypes";
+import * as types from "../types/Chat";
 
 export const addMessage = (message: message): dispatchAction => {
 	return {
@@ -14,5 +14,12 @@ export const setInput = (input: string): dispatchAction => {
 		type: types.SET_INPUT,
 		payload: input,
 		description: "Set the input value of the chat.",
+	};
+};
+
+export const clearAll = (): dispatchAction => {
+	return {
+		type: types.CLEAR_ALL,
+		description: "Clear all messages from the chat.",
 	};
 };

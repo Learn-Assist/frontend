@@ -1,8 +1,8 @@
 import { initialState } from "..";
 import { dispatchAction } from "../types";
-import * as types from "../types/toastTypes";
+import * as types from "../types/toast";
 
-export const toastReducer = (
+const toastReducer = (
 	state: types.toast[] = initialState.toasts,
 	action: dispatchAction
 ) => {
@@ -21,3 +21,5 @@ export const toastReducer = (
 			return state;
 	}
 };
+
+export default toastReducer;

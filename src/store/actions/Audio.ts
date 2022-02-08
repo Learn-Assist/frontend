@@ -1,5 +1,5 @@
 import { dispatchAction } from "../types";
-import * as types from "../types/audioTypes";
+import * as types from "../types/Audio";
 
 export const setURL = (url: string | false): dispatchAction => {
 	return {

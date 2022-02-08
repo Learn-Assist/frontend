@@ -1,11 +1,15 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import Transition from "./utils/Transition";
-import UserAvatar from "../../images/user-avatar-32.png";
+import logo from "../../images/logo.jpg";
+import StoreContext from "../../store";
+import { signOut, getAuth } from "firebase/auth";
+import ModalBasic from "./ModalBasic";
 
 function DropdownProfile({ align }: any) {
+	const { store } = useContext(StoreContext);
 	const [dropdownOpen, setDropdownOpen] = useState<any>(false);
-
+	const [signOutModal, setSignOutModal] = useState(false);
 	const trigger = useRef<any>(null);
 	const dropdown = useRef<any>(null);
 
@@ -46,14 +50,14 @@ function DropdownProfile({ align }: any) {
 			>
 				<img
 					className="w-8 h-8 rounded-full"
-					src={UserAvatar}
+					src={logo}
 					width="32"
 					height="32"
 					alt="User"
 				/>
 				<div className="flex items-center truncate">
 					<span className="truncate ml-2 text-sm font-medium group-hover:text-gray-800">
-						Acme Inc.
+						{store.user.name || "Learn Assist user"}
 					</span>
 					<svg
 						className="w-3 h-3 flex-shrink-0 ml-1 fill-current text-gray-400"
@@ -83,30 +87,63 @@ function DropdownProfile({ align }: any) {
 					onBlur={() => setDropdownOpen(false)}
 				>
 					<div className="pt-0.5 pb-2 px-3 mb-1 border-b border-gray-200">
-						<div className="font-medium text-gray-800">Acme Inc.</div>
-						<div className="text-xs text-gray-500 italic">Administrator</div>
+						<div className="font-medium text-gray-800">{store.user.name}</div>
+						<div className="text-xs text-gray-500 italic">Student</div>
 					</div>
 					<ul>
 						<li>
 							<Link
-								className="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3"
-								to="/settings"
+								className="text-sm text-accent hover:font-bold flex items-center py-1 px-3"
+								to="/profile"
 								onClick={() => setDropdownOpen(!dropdownOpen)}
 							>
 								Settings
 							</Link>
 						</li>
 						<li>
-							<Link
-								className="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3"
-								to="/signin"
+							<button
+								onClick={(e) => {
+									e.stopPropagation();
+									setSignOutModal(true);
+								}}
+								className="text-sm text-accent hover:font-bold flex items-center py-1 px-3"
 							>
 								Sign Out
-							</Link>
+							</button>
 						</li>
 					</ul>
 				</div>
 			</Transition>
+			<ModalBasic
+				id="signoutModal"
+				modalOpen={signOutModal}
+				setModalOpen={setSignOutModal}
+				title={"Sign Out?"}
+			>
+				{/* Modal footer */}
+				<div className="px-5 py-4 bg-base-200">
+					<div className="flex flex-wrap justify-end space-x-2">
+						<button
+							className="btn-sm btn-primary"
+							onClick={(e) => {
+								e.stopPropagation();
+								setSignOutModal(false);
+							}}
+						>
+							Cancel
+						</button>
+						<button
+							onClick={(e) => {
+								signOut(getAuth());
+								window.location.href = "/";
+							}}
+							className="btn-sm btn-primary"
+						>
+							Sign Out
+						</button>
+					</div>
+				</div>
+			</ModalBasic>
 		</div>
 	);
 }

@@ -1,13 +1,8 @@
-
+const colors = require('tailwindcss/colors');
+const plugin = require('tailwindcss/plugin');
 module.exports = {
-  purge: {
-    content: ['./src/**/*.{js,jsx,ts,tsx}'],
-    options: {
-      safelist: [
-        /data-theme$/,
-      ]
-    },
-  },
+  mode: "jit",
+  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   theme: {
     animation: {
       'gradient-x': 'gradient-x 8s ease infinite',
@@ -99,15 +94,19 @@ module.exports = {
       },
     },
   },
-  variants: {
-    extend: {},
-  },
   plugins: [
-    require('daisyui'),
+    require("daisyui"),
+    // eslint-disable-next-line global-require
+    //require('@tailwindcss/forms'),
+    // add custom variant for expanding sidebar
+    plugin(({ addVariant, e }) => {
+      addVariant('sidebar-expanded', ({ modifySelectors, separator }) => {
+        modifySelectors(({ className }) => `.sidebar-expanded .${e(`sidebar-expanded${separator}${className}`)}`);
+      });
+    }),
   ],
   daisyui: {
     styled: true,
-    theme: "light",
     themes:
       [
         'bumblebee',

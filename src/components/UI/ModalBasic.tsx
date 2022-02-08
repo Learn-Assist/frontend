@@ -1,7 +1,19 @@
 import React, { useRef, useEffect } from "react";
 import Transition from "./utils/Transition";
 
-function ModalBasic({ children, id, title, modalOpen, setModalOpen }: any) {
+function ModalBasic({
+	children,
+	id,
+	title,
+	modalOpen,
+	setModalOpen,
+}: {
+	children: any;
+	id: any;
+	title: any;
+	modalOpen: any;
+	setModalOpen: any;
+}) {
 	const modalContent = useRef<any>(null);
 
 	// close on click outside

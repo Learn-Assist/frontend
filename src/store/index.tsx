@@ -3,7 +3,22 @@ import { rootReducer } from "./reducers";
 import { AppState, dispatchAction } from "./types";
 
 export const initialState: AppState = {
-	user: { id: "", name: "" },
+	app: {
+		userStatus: "loading",
+	},
+	user: {
+		uid: "",
+		name: "",
+		email: "",
+		grade: 2,
+		age: 0,
+		school: "",
+		timeActiveInMinutes: 0,
+		createdAt: new Date(),
+		updatedAt: new Date(),
+		photoURL: "",
+		tests: [],
+	},
 	chats: {
 		input: "",
 		messages: [
