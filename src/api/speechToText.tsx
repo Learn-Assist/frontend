@@ -31,7 +31,8 @@ export const useSpeechToText = () => {
 				data.data,
 				store.user.uid as string,
 				new Date(),
-				"user"
+				"user",
+				"text"
 			);
 
 			dispatch(actions.chat.addMessage(message));

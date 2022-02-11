@@ -12,6 +12,8 @@ import { useContext } from "react";
 import StoreContext, { actions } from "../../store";
 import axios from "axios";
 import { BACKEND_URL } from "../../config";
+import Header from "../../components/Header";
+import Navbar from "../../components/Navbar";
 function Signin() {
 	const { dispatch } = useContext(StoreContext);
 	const auth = getAuth();
@@ -60,13 +62,14 @@ function Signin() {
 	return (
 		<div className="flex flex-col min-h-screen overflow-hidden">
 			{/*  Page content */}
+			<Navbar />
 			<main className="flex-grow">
 				<section className="bg-gradient-to-b from-gray-100 to-white">
 					<div className="max-w-6xl mx-auto px-4 sm:px-6">
 						<div className="pt-10 pb-12 md:pt-20 md:pb-20">
 							{/* Page header */}
-							<div className="max-w-3xl mx-auto text-center pb-12 md:pb-20">
-								<h1 className="text-5xl font-extrabold text-accent">
+							<div className="max-w-3xl mx-auto text-center pb-12">
+								<h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-accent">
 									Welcome back. We are as excited to help you learn in a way you
 									would love and enjoy!
 								</h1>

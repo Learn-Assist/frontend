@@ -9,11 +9,11 @@ function ResetPassword() {
 							{/* Page header */}
 							<div className="max-w-3xl mx-auto text-center pb-12 md:pb-20">
 								<h1 className="text-4xl font-extrabold mb-4">
-									Let’s get you back up on your feet
+									Let's get you back up on your feet
 								</h1>
 								<p className="text-xl text-gray-600">
 									Enter the email address you used when you signed up for your
-									account, and we’ll email you a link to reset your password.
+									account, and we'll email you a link to reset your password.
 								</p>
 							</div>
 

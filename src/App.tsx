@@ -45,19 +45,22 @@ function App() {
 			{userStatus !== "loading" && (
 				<main className="scrollbar-hidden">
 					<ToastHandler />
-					{store.user?.uid && userStatus === "user_found" ? (
-						<Routes>
-							<Route path="/about" element={<About />} />
-							<Route path="/roadmap" element={<Roadmap />} />
-							<Route path="/" element={<Dashboard />} />
-							<Route path="/assist" element={<ChatWidget />} />
-							<Route path="/profile" element={<Account />} />
-							<Route path="*" element={<PageNotFound />} />
-						</Routes>
-					) : (
+					{store.user?.uid &&
+						userStatus === "user_found" &&
+						!userQuery.isError && (
+							<Routes>
+								<Route path="/about" element={<About />} />
+								<Route path="/roadmap" element={<Roadmap />} />
+								<Route path="/" element={<Dashboard />} />
+								<Route path="/assist" element={<ChatWidget />} />
+								<Route path="/profile" element={<Account />} />
+								<Route path="*" element={<PageNotFound />} />
+							</Routes>
+						)}
+					{store.user?.uid && userStatus === "user_found" && userQuery.isError && (
 						<>
 							<Navbar />
-							{user.uid && (
+							{user.uid && userQuery.isError && (
 								<div className="alert alert-error rounded-none">
 									<div className="flex-1">
 										<svg
@@ -80,6 +83,10 @@ function App() {
 									</div>
 								</div>
 							)}
+						</>
+					)}
+					{userStatus === "no_user" && (
+						<>
 							<Routes>
 								<Route path="/" element={<Signin />}>
 									<Route path="home" element={<Signin />} />

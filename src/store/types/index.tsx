@@ -24,7 +24,8 @@ export interface AppState {
 	};
 	chats: {
 		input: string;
-		messages: [message];
+		messages: Array<message>;
+		isLoading: boolean;
 	};
 	audio: {
 		currentURL: any;
@@ -47,10 +48,9 @@ export interface message {
 	id: string;
 	timeStamp: Date;
 	message: string;
-	type: "user" | "bot";
-	image?: string;
-	other?: any;
-	buttons?: any;
+	type: "user" | "bot" | "buttons" | "loading";
+	content: "text" | "audio" | "image" | "video" | "iframe";
+	buttons?: Array<string>;
 }
 
 export type appReducerState = any;

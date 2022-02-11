@@ -100,12 +100,12 @@ function Account() {
 										</section>
 										{/* Email */}
 										<section>
-											<h2 className="text-xl w-full leading-snug text-gray-800 font-bold mb-1">
+											<h2 className="text-xl w-1/2 leading-snug text-gray-800 font-bold mb-1">
 												Email
 											</h2>
 											<div className="text-sm">Your school email address.</div>
 											<div className="flex flex-wrap mt-5 w-full">
-												<div className="mr-2 sm:w-2/3 w-1/3">
+												<div className="mr-2 sm:w-2/3 md:w-1/3">
 													<label className="sr-only" htmlFor="email">
 														Email
 													</label>

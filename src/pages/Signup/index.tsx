@@ -12,6 +12,7 @@ import { useCreate } from "../../api/User";
 import { user } from "../../store/types";
 import StoreContext, { actions } from "../../store";
 import { Link } from "react-router-dom";
+import Navbar from "../../components/Navbar";
 
 function SignUp() {
 	const { store, dispatch } = useContext(StoreContext);
@@ -123,13 +124,15 @@ function SignUp() {
 	return (
 		<div className="flex flex-col min-h-screen overflow-hidden">
 			{/*  Page content */}
+			<Navbar />
+
 			<main className="bg-white flex-grow">
 				<section className="bg-gradient-to-b from-warmGray-100 to-white">
 					<div className="max-w-6xl mx-auto px-4 sm:px-6">
-						<div className="pt-2 pb-12 md:pt-28 md:pb-12">
+						<div className="pt-2 pb-12 md:pt-20 md:pb-12">
 							{/* Page header */}
 							<div className="max-w-3xl mx-auto text-center pb-8 md:pb-20">
-								<h1 className="text-accent text-5xl font-extrabold">
+								<h1 className="text-accent text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold">
 									Welcome. We are excited to help you learn in a way you've
 									never seen before.
 								</h1>

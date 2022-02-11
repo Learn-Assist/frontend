@@ -10,6 +10,9 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 import { useSpeechToText } from "../api/speechToText";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
+import DropdownRecordingButton from "../components/chat/DropdownRecordingButton";
+import ChatElement from "../components/chat/ChatElement";
+export type recordingButtons = "Control" | "Space" | "Tab" | "Alt" | "None";
 function ChatPage() {
 	const { store, dispatch } = useContext(StoreContext);
 	const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -23,21 +26,33 @@ function ChatPage() {
 	const [boolToStopOnMountSpeechTrigger, setBoolToStopOnMountSpeechTrigger] =
 		useState(false);
 	const setInput = (input: string) => dispatch(actions.chat.setInput(input));
-
+	const [recordingButton, setRecordingButton] =
+		useState<recordingButtons>("None");
 	useEffect(() => {
 		sendMessage.mutate({
 			sender: store.user.uid as string,
 			message: "/restart",
 		});
+	}, []);
+	useEffect(() => {
 		document.addEventListener("keydown", keyDownHandler, false);
 		document.addEventListener("keyup", keyUpHandler, false);
-		function keyDownHandler(e: any) {
-			if (e.key === "Control") startMic();
+		let key: string | number;
+		if (recordingButton === "Space") key = " ";
+		else key = recordingButton;
+		function keyDownHandler(e: KeyboardEvent) {
+			if ((e.code === key || e.key === key) && recordingButton !== "None")
+				startMic();
 		}
-		function keyUpHandler(e: any) {
-			if (e.key === "Control") endMic();
+		function keyUpHandler(e: KeyboardEvent) {
+			if ((e.code === key || e.key === key) && recordingButton !== "None")
+				endMic();
 		}
-	}, []);
+		return () => {
+			document.removeEventListener("keydown", keyDownHandler);
+			document.removeEventListener("keyup", keyUpHandler);
+		};
+	}, [recordingButton]);
 	useEffect(() => {
 		if (srcAudioURL && boolToStopOnMountSpeechTrigger) {
 			dispatch(actions.audio.setURL(srcAudioURL));
@@ -57,10 +72,12 @@ function ChatPage() {
 				input,
 				store.user.uid as string,
 				new Date(),
-				"user"
+				"user",
+				"text"
 			);
 			dispatch(actions.chat.addMessage(message));
 			setInput("");
+			dispatch(actions.chat.setLoadingTrue());
 			sendMessage.mutate({ sender: message.user, message: message.message });
 		}
 	};
@@ -92,6 +109,8 @@ function ChatPage() {
 							<button
 								className="btn btn-outline btn-accent"
 								onClick={() => {
+									dispatch(actions.chat.setLoadingTrue());
+									console.log("Loading", store.chats.isLoading);
 									sendMessage.mutate({
 										sender: store.user.uid as string,
 										message: "/restart",
@@ -102,6 +121,11 @@ function ChatPage() {
 							>
 								Reset Conversation
 							</button>
+							<DropdownRecordingButton
+								onChange={(button: recordingButtons) =>
+									setRecordingButton(button)
+								}
+							/>
 							<div className="font-bold">Your inputs:</div>
 							{store.audio.prevURLs &&
 								store.audio.prevURLs.map((url: any, index) => {
@@ -185,3 +209,19 @@ function ChatPage() {
 }
 
 export default ChatPage;
+
+const LoadingUI = () => {
+	const { store } = useContext(StoreContext);
+	return (
+		<>
+			{!store.chats.isLoading && (
+				<ChatElement
+					side="left"
+					children={
+						<button className="btn btn-circle btn-primary loading m-2" />
+					}
+				/>
+			)}
+		</>
+	);
+};

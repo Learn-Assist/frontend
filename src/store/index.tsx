@@ -27,8 +27,10 @@ export const initialState: AppState = {
 				timeStamp: new Date(),
 				message: "Ask me something...",
 				type: "bot",
+				content: "text",
 			},
 		],
+		isLoading: false,
 	},
 	audio: {
 		currentURL: false,

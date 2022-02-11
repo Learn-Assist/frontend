@@ -1,3 +1,4 @@
+import { type } from "os";
 import { dispatchAction, message } from "../types";
 import * as types from "../types/Chat";
 
@@ -21,5 +22,29 @@ export const clearAll = (): dispatchAction => {
 	return {
 		type: types.CLEAR_ALL,
 		description: "Clear all messages from the chat.",
+	};
+};
+
+export const setLoadingTrue = (): dispatchAction => {
+	console.log("SET_LOADING action true");
+	const message: message = {
+		id: "APP",
+		timeStamp: new Date(),
+		message: "...",
+		type: "loading",
+		content: "text",
+	};
+	return {
+		type: types.ADD_MESSAGE,
+		payload: message,
+		description: "Set the loading state of the chat.",
+	};
+};
+
+export const setLoadingFalse = (): dispatchAction => {
+	console.log("SET_LOADING action false");
+	return {
+		type: types.REMOVE_LOADING,
+		description: "Remove the loading state of the chat.",
 	};
 };
