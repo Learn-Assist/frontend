@@ -147,10 +147,10 @@ function ChatPage() {
 					</div>
 					<form
 						onSubmit={(e) => onSend(e)}
-						className="flex flex-row ml-auto absolute bottom-0 mb-3 mr-3 w-full"
+						className="p-1 pb-3 fixed flex flex-row ml-auto bottom-0 mt-3 py-2 mr-3 w-full bg-white"
 					>
 						<input
-							className="ml-1 px-8 w-full mr-5 input md:input-md xl:input-lg  input input-secondary"
+							className="ml-1 px-3 md:px-8 w-full mr-2 md:mr-5 input input-sm sm:input-sm md:input-md xl:input-lg  input input-secondary"
 							placeholder="Talk to me to get started"
 							value={input}
 							onChange={(e) => setInput(e.target.value)}
@@ -162,7 +162,7 @@ function ChatPage() {
 							<button
 								onMouseDown={startMic}
 								onMouseUp={endMic}
-								className="btn-primary px-5 mr-5 rounded-full btn-xl"
+								className="btn-primary px-5 mr-2 md:mr-5 rounded-full btn-sm md:btn-xl"
 							>
 								{isRecording ? (
 									<BsFillStopFill size={20} />
@@ -173,7 +173,7 @@ function ChatPage() {
 						)}
 						{audioURL && (
 							<button
-								className="btn-primary px-5 mr-5 rounded-full btn-xln"
+								className="btn-primary px-5 mr-2 md:mr-5 rounded-full btn-sm md:btn-xl "
 								onClick={() => {
 									setInput("");
 									dispatch(actions.audio.setURL(false));
@@ -185,7 +185,7 @@ function ChatPage() {
 						<button
 							type="submit"
 							onClick={(e) => onSend(e)}
-							className="btn-primary px-5 mr-5 rounded-full btn md:btn-md xl:btn-lg"
+							className="btn-primary px-5 mr-2 md:mr-5 rounded-full btn btn-sm md:btn-md xl:btn-lg xs:btn-sm"
 						>
 							Send &gt;
 						</button>
@@ -209,19 +209,3 @@ function ChatPage() {
 }
 
 export default ChatPage;
-
-const LoadingUI = () => {
-	const { store } = useContext(StoreContext);
-	return (
-		<>
-			{!store.chats.isLoading && (
-				<ChatElement
-					side="left"
-					children={
-						<button className="btn btn-circle btn-primary loading m-2" />
-					}
-				/>
-			)}
-		</>
-	);
-};

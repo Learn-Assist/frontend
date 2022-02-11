@@ -54,6 +54,9 @@ function App() {
 								<Route path="/" element={<Dashboard />} />
 								<Route path="/assist" element={<ChatWidget />} />
 								<Route path="/profile" element={<Account />} />
+								<Route path="/signup" element={<Dashboard />} />
+								<Route path="/signin" element={<Dashboard />} />
+								<Route path="/reset-password" element={<Dashboard />} />
 								<Route path="*" element={<PageNotFound />} />
 							</Routes>
 						)}

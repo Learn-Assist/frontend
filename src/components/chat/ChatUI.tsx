@@ -28,7 +28,7 @@ function ChatUI() {
 			<div
 				ref={ref}
 				style={{ height: window.innerHeight * 0.8 }}
-				className="flex flex-col overflow-y-auto pb-12 scrollbar-hidden"
+				className="flex flex-col overflow-y-auto pb-20 mb-20 scrollbar-hidden"
 			>
 				{store.chats.messages.map((message, i: number) => {
 					let side: "left" | "right";
@@ -86,7 +86,8 @@ function ChatUI() {
 					} else {
 						if (message.type === "buttons")
 							return (
-								<div className="w-1/2">
+								<div className="">
+									<div className="text-sm font-bold">Options</div>
 									{message.buttons?.map((button, x) => (
 										<button
 											className="font-bold btn-sm btn-primary rounded-full  my-1 mr-2 px-4"
