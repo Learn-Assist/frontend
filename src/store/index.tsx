@@ -23,11 +23,19 @@ export const initialState: AppState = {
 		input: "",
 		messages: [
 			{
-				id: "new_message_init",
+				id: "",
 				timeStamp: new Date(),
 				message: "Ask me something...",
 				type: "bot",
 				content: "text",
+			},
+			{
+				id: "",
+				timeStamp: new Date(),
+				message: "",
+				type: "buttons",
+				content: "text",
+				buttons: ["Hello there!", "I want to learn something..."],
 			},
 		],
 		isLoading: false,

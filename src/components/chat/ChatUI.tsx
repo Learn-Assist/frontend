@@ -12,7 +12,7 @@ function ChatUI() {
 	useEffect(() => {
 		const A_LARGE_SCROLL_AMOUNT = 1000000;
 		ref.current.scrollTop = A_LARGE_SCROLL_AMOUNT;
-	}, [store.chats.messages]);
+	}, [store.chats]);
 	function getYoutubeIframeId(url: string) {
 		const regExp =
 			/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
@@ -50,7 +50,7 @@ function ChatUI() {
 			<div
 				ref={ref}
 				style={{ height: window.innerHeight * 0.8 }}
-				className="flex flex-col overflow-y-auto pb-20 mb-20 scrollbar-hidden"
+				className="flex flex-col overflow-y-auto pb-24 scrollbar-hidden"
 			>
 				{store.chats.messages.map((message, i: number) => {
 					let side: "left" | "right";
@@ -129,7 +129,7 @@ function ChatUI() {
 												);
 												dispatch(actions.chat.setLoadingTrue());
 												sendMessage.mutate({
-													sender: message.id,
+													sender: store.user.uid,
 													message: button.toString(),
 												});
 											}}

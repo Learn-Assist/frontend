@@ -12,6 +12,7 @@ import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
 import DropdownRecordingButton from "../components/chat/DropdownRecordingButton";
 import ChatElement from "../components/chat/ChatElement";
+import { RiSendPlane2Fill } from "react-icons/ri";
 export type recordingButtons = "Control" | "Space" | "Tab" | "Alt" | "None";
 function ChatPage() {
 	const { store, dispatch } = useContext(StoreContext);
@@ -148,7 +149,7 @@ function ChatPage() {
 					</div>
 					<form
 						onSubmit={(e) => onSend(e)}
-						className={`p-1 pb-3 ${
+						className={`p-1 pb-5 lg:pb-3 ${
 							window.innerWidth <= 768 ? "fixed" : "absolute"
 						} flex flex-row ml-auto bottom-0 mt-3 py-2 mr-3 w-full bg-white`}
 					>
@@ -196,7 +197,7 @@ function ChatPage() {
 								window.innerWidth <= 640 ? "btn-sm" : "btn-xl"
 							}`}
 						>
-							Send &gt;
+							<RiSendPlane2Fill size={20} />
 						</button>
 					</form>
 				</div>

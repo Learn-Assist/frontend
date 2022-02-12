@@ -12,7 +12,26 @@ const chatReducer = (
 		case types.SET_INPUT:
 			return { ...state, input: action.payload };
 		case types.CLEAR_ALL:
-			return { input: "", messages: [] };
+			return {
+				input: "",
+				messages: [
+					{
+						id: "new_message_init",
+						timeStamp: new Date(),
+						message: "Ask me something...",
+						type: "bot",
+						content: "text",
+					},
+					{
+						id: "",
+						timeStamp: new Date(),
+						message: "",
+						type: "buttons",
+						content: "text",
+						buttons: ["Hello there!", "I want to learn something..."],
+					},
+				],
+			};
 		case types.SET_LOADING:
 			return { ...state, loading: action.payload };
 		case types.REMOVE_LOADING: {
