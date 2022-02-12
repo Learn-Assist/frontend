@@ -21,9 +21,8 @@ function ChatUI() {
 
 	return (
 		<>
-			<div className="alert alert-error font-bold">
-				Speech to text is not supported currently due to unavailablity of cloud
-				resources.
+			<div className="alert alert-error font-bold xs:text-xs lg:text-lg">
+				This chat is currently in development. Expect bugs!
 			</div>
 			<div
 				ref={ref}

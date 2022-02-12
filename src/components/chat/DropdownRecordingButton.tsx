@@ -3,8 +3,10 @@ import { recordingButtons } from "../../pages/Chat";
 import Transition from "../UI/utils/Transition";
 
 function DropdownRecordingButton({
+	button,
 	onChange,
 }: {
+	button: recordingButtons;
 	onChange: (value: recordingButtons) => void;
 }) {
 	const options: Array<recordingButtons> = [
@@ -16,7 +18,7 @@ function DropdownRecordingButton({
 	];
 
 	const [dropdownOpen, setDropdownOpen] = useState<any>(false);
-	const [selected, setSelected] = useState<any>(2);
+	const [selected, setSelected] = useState<any>(button);
 
 	const trigger = useRef<any>(null);
 	const dropdown = useRef<any>(null);
@@ -51,14 +53,14 @@ function DropdownRecordingButton({
 		<div className="relative ">
 			<button
 				ref={trigger}
-				className="btn mt-2 btn-outline justify-between min-w-44 btn-neutral"
+				className="btn md:btn-sm lg:btn-md xl:btn-xl mt-2 btn-outline justify-between min-w-44 btn-neutral"
 				aria-label="Recording button dropdown"
 				aria-haspopup="true"
 				onClick={() => setDropdownOpen(!dropdownOpen)}
 				aria-expanded={dropdownOpen}
 			>
 				<span className="flex items-center">
-					<span>Recording trigger button: {selected}</span>
+					<span>Recording button: {selected}</span>
 				</span>
 				<svg
 					className="flex-shrink-0 ml-1 fill-current text-gray-400"

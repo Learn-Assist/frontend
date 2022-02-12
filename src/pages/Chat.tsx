@@ -107,7 +107,7 @@ function ChatPage() {
 					>
 						<div className="h-full mt-auto p-4 font-bold mb-12">
 							<button
-								className="btn btn-outline btn-accent"
+								className="btn xs:btn-sm sm:btn-md md:btn-lg lg:btn-lg xl:btn-xl btn-outline btn-accent"
 								onClick={() => {
 									dispatch(actions.chat.setLoadingTrue());
 									console.log("Loading", store.chats.isLoading);
@@ -122,6 +122,7 @@ function ChatPage() {
 								Reset Conversation
 							</button>
 							<DropdownRecordingButton
+								button={recordingButton}
 								onChange={(button: recordingButtons) =>
 									setRecordingButton(button)
 								}
@@ -147,11 +148,13 @@ function ChatPage() {
 					</div>
 					<form
 						onSubmit={(e) => onSend(e)}
-						className="p-1 pb-3 fixed flex flex-row ml-auto bottom-0 mt-3 py-2 mr-3 w-full bg-white"
+						className={`p-1 pb-3 ${
+							window.innerWidth <= 768 ? "fixed" : "absolute"
+						} flex flex-row ml-auto bottom-0 mt-3 py-2 mr-3 w-full bg-white`}
 					>
 						<input
-							className="ml-1 px-3 md:px-8 w-full mr-2 md:mr-5 input input-sm sm:input-sm md:input-md xl:input-lg  input input-secondary"
-							placeholder="Talk to me to get started"
+							className="ml-1 px-3 md:px-8 w-full mr-2 md:mr-5 input input-sm sm:input-sm md:input-md xl:input-md input input-secondary"
+							placeholder="Type your message here"
 							value={input}
 							onChange={(e) => setInput(e.target.value)}
 						/>
@@ -162,7 +165,9 @@ function ChatPage() {
 							<button
 								onMouseDown={startMic}
 								onMouseUp={endMic}
-								className="btn-primary px-5 mr-2 md:mr-5 rounded-full btn-sm md:btn-xl"
+								className={`btn btn-primary mr-2 md:mr-5 rounded-full ${
+									window.innerWidth <= 640 ? "btn-sm" : "btn-xl"
+								}`}
 							>
 								{isRecording ? (
 									<BsFillStopFill size={20} />
@@ -173,7 +178,9 @@ function ChatPage() {
 						)}
 						{audioURL && (
 							<button
-								className="btn-primary px-5 mr-2 md:mr-5 rounded-full btn-sm md:btn-xl "
+								className={`btn btn-primary mr-2 md:mr-5 rounded-full ${
+									window.innerWidth <= 640 ? "btn-sm" : "btn-xl"
+								}`}
 								onClick={() => {
 									setInput("");
 									dispatch(actions.audio.setURL(false));
@@ -185,7 +192,9 @@ function ChatPage() {
 						<button
 							type="submit"
 							onClick={(e) => onSend(e)}
-							className="btn-primary px-5 mr-2 md:mr-5 rounded-full btn btn-sm md:btn-md xl:btn-lg xs:btn-sm"
+							className={`btn btn-primary mr-2 md:mr-5 rounded-full ${
+								window.innerWidth <= 640 ? "btn-sm" : "btn-xl"
+							}`}
 						>
 							Send &gt;
 						</button>
