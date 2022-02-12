@@ -1,6 +1,6 @@
 function Section1() {
 	return (
-		<div className="w-full">
+		<div className="w-full overflow-auto">
 			<div className="shadow-xl border stats border-base-300">
 				<div className="stat mx-5">
 					<div className="stat-title">Grade 1 completion</div>

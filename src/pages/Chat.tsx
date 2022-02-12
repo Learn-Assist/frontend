@@ -107,7 +107,7 @@ function ChatPage() {
 					>
 						<div className="h-full mt-auto p-4 font-bold mb-12">
 							<button
-								className="btn xs:btn-sm sm:btn-md md:btn-lg lg:btn-lg xl:btn-xl btn-outline btn-accent"
+								className="btn btn-sm btn-outline btn-accent"
 								onClick={() => {
 									dispatch(actions.chat.setLoadingTrue());
 									console.log("Loading", store.chats.isLoading);

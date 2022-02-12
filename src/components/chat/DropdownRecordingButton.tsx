@@ -53,7 +53,7 @@ function DropdownRecordingButton({
 		<div className="relative ">
 			<button
 				ref={trigger}
-				className="btn md:btn-sm lg:btn-md xl:btn-xl mt-2 btn-outline justify-between min-w-44 btn-neutral"
+				className="btn btn-sm mt-2 btn-outline justify-between btn-accent"
 				aria-label="Recording button dropdown"
 				aria-haspopup="true"
 				onClick={() => setDropdownOpen(!dropdownOpen)}

@@ -13,9 +13,11 @@ import Signin from "./pages/Signin/index";
 import ResetPassword from "./pages/Signin/ResetPassword";
 import PageNotFound from "./pages/404";
 import { useGet } from "./api/User";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./pages/Dashboard";
 import Account from "./pages/Settings";
-
+import "./App.css";
+import logo from "./images/logo.jpg";
+import Loader from "./components/Loader";
 function App() {
 	const { store } = useContext(StoreProvider);
 	const auth = getAuth();
@@ -104,7 +106,7 @@ function App() {
 					)}
 				</main>
 			)}{" "}
-			{userStatus === "loading" && <div>Loading...</div>}
+			{userStatus === "loading" && <Loader />}
 		</>
 	);
 }

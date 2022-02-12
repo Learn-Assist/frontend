@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import ChatElement from "./ChatElement";
 import StoreContext, { actions } from "../../store";
 import { useSendMessage } from "../../api/Rasa";
@@ -7,6 +7,7 @@ import "./style.scss";
 function ChatUI() {
 	const sendMessage = useSendMessage();
 	const { store, dispatch } = useContext(StoreContext);
+	const [alert, setAlert] = useState(true);
 	const ref = useRef<any>();
 	useEffect(() => {
 		const A_LARGE_SCROLL_AMOUNT = 1000000;
@@ -21,9 +22,31 @@ function ChatUI() {
 
 	return (
 		<>
-			<div className="alert alert-error font-bold xs:text-xs lg:text-lg">
-				This chat is currently in development. Expect bugs!
-			</div>
+			{alert && (
+				<div className="alert alert-error font-bold text-xs sm:text-sm md:text-sm lg:text-md xl:text-lg mb-2">
+					This chat UI is currently in development. Bugs can be expected.
+					<span className="underline" onClick={() => setAlert(false)}>
+						Close
+					</span>
+				</div>
+			)}
+			{window.innerWidth < 640 && (
+				<button
+					className="btn btn-sm btn-outline btn-accent"
+					onClick={() => {
+						dispatch(actions.chat.setLoadingTrue());
+						console.log("Loading", store.chats.isLoading);
+						sendMessage.mutate({
+							sender: store.user.uid as string,
+							message: "/restart",
+						});
+						dispatch(actions.chat.clearAll());
+						console.log("store.chats:", store.chats, store.audio);
+					}}
+				>
+					Reset Conversation
+				</button>
+			)}
 			<div
 				ref={ref}
 				style={{ height: window.innerHeight * 0.8 }}
