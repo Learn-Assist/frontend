@@ -25,7 +25,11 @@ export const useSpeechToText = () => {
 	const { store, dispatch } = useContext(StoreContext);
 	const sendMessage = useSendMessage();
 	return useMutation(getTextFromSpeech, {
+		onMutate: () => {
+			dispatch(actions.chat.setLoadingTrue());
+		},
 		onSuccess: (data) => {
+			dispatch(actions.chat.setLoadingFalse());
 			const message = new Message(
 				"random_id",
 				data.data,

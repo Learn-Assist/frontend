@@ -116,7 +116,6 @@ function SignUp() {
 			create.mutate(newUser);
 		} catch (e) {
 			if (result) {
-				console.log(result);
 				await deleteUser(result.user);
 			}
 		}

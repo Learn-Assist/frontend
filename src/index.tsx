@@ -7,7 +7,6 @@ import { StoreProvider } from "./store";
 import { QueryClient, QueryClientProvider } from "react-query";
 // import reportWebVitals from './reportWebVitals';
 const queryClient = new QueryClient();
-
 ReactDOM.render(
 	<React.StrictMode>
 		<QueryClientProvider client={queryClient}>

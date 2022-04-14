@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { BiBookContent } from "react-icons/bi";
 import { NavLink, useLocation } from "react-router-dom";
 import logo from "../images/logo.jpg";
 
@@ -153,14 +154,14 @@ function Sidebar({ sidebarOpen, setSidebarOpen }: any) {
 								</NavLink>
 							</li>
 
-							{/* Dashboard */}
-							<li
+							{/* Academic */}
+							{/* <li
 								className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${
 									pathname === "/" && "bg-gray-900"
 								}`}
 							>
 								<NavLink
-									to="/assist"
+									to="/academic-learning"
 									className={`block text-gray-200 hover:text-white truncate transition duration-150 ${
 										pathname === "/" && "hover:text-gray-200"
 									}`}
@@ -169,23 +170,116 @@ function Sidebar({ sidebarOpen, setSidebarOpen }: any) {
 										<svg className="flex-shrink-0 h-6 w-6" viewBox="0 0 24 24">
 											<path
 												className={`fill-current text-gray-600 ${
-													pathname.includes("assist") && "text-yellow-500"
+													pathname.includes("academic-learning") &&
+													"text-yellow-500"
 												}`}
 												d="M18.974 8H22a2 2 0 012 2v6h-2v5a1 1 0 01-1 1h-2a1 1 0 01-1-1v-5h-2v-6a2 2 0 012-2h.974zM20 7a2 2 0 11-.001-3.999A2 2 0 0120 7zM2.974 8H6a2 2 0 012 2v6H6v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5H0v-6a2 2 0 012-2h.974zM4 7a2 2 0 11-.001-3.999A2 2 0 014 7z"
 											/>
 											<path
 												className={`fill-current text-gray-400 ${
-													pathname.includes("assist") && "text-yellow-300"
+													pathname.includes("academic-learning") &&
+													"text-yellow-300"
 												}`}
 												d="M12 6a3 3 0 110-6 3 3 0 010 6zm2 18h-4a1 1 0 01-1-1v-6H6v-6a3 3 0 013-3h6a3 3 0 013 3v6h-3v6a1 1 0 01-1 1z"
 											/>
 										</svg>
 										<span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-											Assist
+											Academic Learnings
+										</span>
+									</div>
+								</NavLink>
+							</li> */}
+
+							{/* Smart */}
+							<li
+								className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${
+									pathname === "/" && "bg-gray-900"
+								}`}
+							>
+								<NavLink
+									to="/otherlearnings"
+									className={`block text-gray-200 hover:text-white truncate transition duration-150 ${
+										pathname === "/" && "hover:text-gray-200"
+									}`}
+								>
+									<div className="flex items-center">
+										<BiBookContent
+											size={20}
+											className={`fill-current text-gray-400 ${
+												pathname.includes("otherlearnings") && "text-yellow-300"
+											}`}
+										/>
+										<span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+											Smart Learnings
 										</span>
 									</div>
 								</NavLink>
 							</li>
+
+							{/* 	 */}
+							<li
+								className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${
+									pathname === "/" && "bg-gray-900"
+								}`}
+							>
+								<NavLink
+									to="/assesment"
+									className={`block text-gray-200 hover:text-white truncate transition duration-150 ${
+										pathname === "/" && "hover:text-gray-200"
+									}`}
+								>
+									<div className="flex items-center">
+										<BiBookContent
+											size={20}
+											className={`fill-current text-gray-400 ${
+												pathname.includes("assessment") && "text-yellow-300"
+											}`}
+										/>
+										<span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+											Assessment
+										</span>
+									</div>
+								</NavLink>
+							</li>
+							<li className="py-2">
+								<h3 className="text-xs uppercase text-gray-500 font-semibold pl-3">
+									<span
+										className="hidden lg:block lg:sidebar-expanded:hidden 2xl:hidden text-center w-6"
+										aria-hidden="true"
+									>
+										•••
+									</span>
+									<span className="lg:hidden lg:sidebar-expanded:block 2xl:block">
+										Admin Controls
+									</span>
+								</h3>
+							</li>
+
+							{/* Content */}
+							{/* <li
+								className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${
+									pathname === "/" && "bg-gray-900"
+								}`}
+							>
+								<NavLink
+									to="/contents"
+									className={`block text-gray-200 hover:text-white truncate transition duration-150 ${
+										pathname === "/" && "hover:text-gray-200"
+									}`}
+								>
+									<div className="flex items-center">
+										<BiBookContent
+											size={20}
+											className={`fill-current text-gray-400 ${
+												pathname.includes("contents") && "text-yellow-300"
+											}`}
+										/>
+										<span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+											Content Management
+										</span>
+									</div>
+								</NavLink>
+							</li> */}
 
 							{/* Account */}
 							<li

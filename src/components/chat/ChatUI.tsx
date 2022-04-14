@@ -3,15 +3,19 @@ import ChatElement from "./ChatElement";
 import StoreContext, { actions } from "../../store";
 import { useSendMessage } from "../../api/Rasa";
 import { Message } from "../../store/types";
+import { BsFillStopFill } from "react-icons/bs";
+import { FaPause, FaPlay, FaStop } from "react-icons/fa";
 import "./style.scss";
 function ChatUI() {
 	const sendMessage = useSendMessage();
 	const { store, dispatch } = useContext(StoreContext);
 	const [alert, setAlert] = useState(true);
+	const [isPaused, setIsPaused] = useState(false);
 	const ref = useRef<any>();
 	useEffect(() => {
 		const A_LARGE_SCROLL_AMOUNT = 1000000;
 		ref.current.scrollTop = A_LARGE_SCROLL_AMOUNT;
+		setIsPaused(false);
 	}, [store.chats]);
 	function getYoutubeIframeId(url: string) {
 		const regExp =
@@ -19,29 +23,26 @@ function ChatUI() {
 		const match = url.match(regExp);
 		return match && match[2].length === 11 ? match[2] : "";
 	}
-
 	return (
 		<>
-			{alert && (
+			{/* {alert && (
 				<div className="alert alert-error font-bold text-xs sm:text-sm md:text-sm lg:text-md xl:text-lg mb-2">
 					This chat UI is currently in development. Bugs can be expected.
 					<span className="underline" onClick={() => setAlert(false)}>
 						Close
 					</span>
 				</div>
-			)}
+			)} */}
 			{window.innerWidth < 640 && (
 				<button
 					className="btn btn-sm btn-outline btn-accent"
 					onClick={() => {
 						dispatch(actions.chat.setLoadingTrue());
-						console.log("Loading", store.chats.isLoading);
 						sendMessage.mutate({
 							sender: store.user.uid as string,
 							message: "/restart",
 						});
 						dispatch(actions.chat.clearAll());
-						console.log("store.chats:", store.chats, store.audio);
 					}}
 				>
 					Reset Conversation
@@ -71,6 +72,21 @@ function ChatUI() {
 											/>
 										)}
 										{message.content === "text" && message.message}
+										{message.content === "text" &&
+											!isPaused &&
+											message.type === "bot" &&
+											i >= store.chats.messages.length - 2 && (
+												<div
+													className="ml-2 btn btn-outline btn-accent btn-xs"
+													onClick={() => {
+														window.speechSynthesis.cancel();
+														setIsPaused(true);
+													}}
+												>
+													Stop Speech
+													<BsFillStopFill className="ml-1" size={18} />
+												</div>
+											)}
 										{message.content === "video" && (
 											<video
 												className="object-scale-down max-w-2/3"
@@ -109,10 +125,10 @@ function ChatUI() {
 						if (message.type === "buttons")
 							return (
 								<div className="">
-									<div className="text-sm font-bold">Options</div>
+									<div className="text-sm font-bold">Suggested: </div>
 									{message.buttons?.map((button, x) => (
 										<button
-											className="font-bold btn-sm btn-primary rounded-full  my-1 mr-2 px-4"
+											className="font-bold btn btn-xs btn-info btn-outline rounded-full my-1 mr-2 px-4"
 											key={x}
 											onClick={() => {
 												dispatch(

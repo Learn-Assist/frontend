@@ -1,0 +1,109 @@
+{
+	"Questions": [
+		{
+			"question": "What day was the eagle owl hooting from the well?",
+			"answer": [
+				{
+					"answer": "Lübeck",
+					"correct": false
+				},
+				{
+					"answer": "40m",
+					"correct": false
+				},
+				{
+					"answer": "131",
+					"correct": false
+				},
+				{
+					"answer": "Saturday",
+					"correct": true
+				}
+			]
+		},
+		{
+			"question": "how deep is the owl?",
+			"answer": [
+				{
+					"answer": "Saturday",
+					"correct": false
+				},
+				{
+					"answer": "40m",
+					"correct": true
+				},
+				{
+					"answer": "131",
+					"correct": false
+				},
+				{
+					"answer": "Lübeck",
+					"correct": false
+				}
+			]
+		},
+		{
+			"question": "Where did the owl come from?",
+			"answer": [
+				{
+					"answer": "Lübeck",
+					"correct": false
+				},
+				{
+					"answer": "Germany",
+					"correct": true
+				},
+				{
+					"answer": "131",
+					"correct": false
+				},
+				{
+					"answer": "The Bad Segeberg",
+					"correct": false
+				}
+			]
+		},
+		{
+			"question": "what is the name of the town?",
+			"answer": [
+				{
+					"answer": "40m",
+					"correct": false
+				},
+				{
+					"answer": "Bad Segeberg",
+					"correct": true
+				},
+				{
+					"answer": "Kalkberg",
+					"correct": false
+				},
+				{
+					"answer": "The Bad Segeberg",
+					"correct": false
+				}
+			]
+		},
+		{
+			"question": "what is the name of the town?",
+			"answer": [
+				{
+					"answer": "Saturday",
+					"correct": false
+				},
+				{
+					"answer": "Germany",
+					"correct": false
+				},
+				{
+					"answer": "Lübeck",
+					"correct": true
+				},
+				{
+					"answer": "131",
+					"correct": false
+				}
+			]
+		}
+	]
+}

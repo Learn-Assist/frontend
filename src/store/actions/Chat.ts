@@ -26,7 +26,6 @@ export const clearAll = (): dispatchAction => {
 };
 
 export const setLoadingTrue = (): dispatchAction => {
-	console.log("SET_LOADING action true");
 	const message: message = {
 		id: "APP",
 		timeStamp: new Date(),
@@ -42,7 +41,6 @@ export const setLoadingTrue = (): dispatchAction => {
 };
 
 export const setLoadingFalse = (): dispatchAction => {
-	console.log("SET_LOADING action false");
 	return {
 		type: types.REMOVE_LOADING,
 		description: "Remove the loading state of the chat.",

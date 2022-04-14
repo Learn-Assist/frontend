@@ -11,8 +11,8 @@ import { useSpeechToText } from "../api/speechToText";
 import Sidebar from "../components/Sidebar";
 import Header from "../components/Header";
 import DropdownRecordingButton from "../components/chat/DropdownRecordingButton";
-import ChatElement from "../components/chat/ChatElement";
 import { RiSendPlane2Fill } from "react-icons/ri";
+import { GrPowerReset } from "react-icons/gr";
 export type recordingButtons = "Control" | "Space" | "Tab" | "Alt" | "None";
 function ChatPage() {
 	const { store, dispatch } = useContext(StoreContext);
@@ -34,6 +34,16 @@ function ChatPage() {
 			sender: store.user.uid as string,
 			message: "/restart",
 		});
+		const esc = (e: KeyboardEvent) => {
+			if (e.key === "Escape" || e.code === "27") {
+				window.speechSynthesis.cancel();
+			}
+		};
+		const z = document.addEventListener("keydown", esc);
+		return () => {
+			window.speechSynthesis.cancel();
+			document.removeEventListener("keydown", esc);
+		};
 	}, []);
 	useEffect(() => {
 		document.addEventListener("keydown", keyDownHandler, false);
@@ -111,16 +121,14 @@ function ChatPage() {
 								className="btn btn-sm btn-outline btn-accent"
 								onClick={() => {
 									dispatch(actions.chat.setLoadingTrue());
-									console.log("Loading", store.chats.isLoading);
 									sendMessage.mutate({
 										sender: store.user.uid as string,
 										message: "/restart",
 									});
 									dispatch(actions.chat.clearAll());
-									console.log("store.chats:", store.chats, store.audio);
 								}}
 							>
-								Reset Conversation
+								<GrPowerReset size={18} className="mr-2" /> Reset Conversation
 							</button>
 							<DropdownRecordingButton
 								button={recordingButton}

@@ -8,15 +8,22 @@ function Home() {
 	const [speak, setspeak] = useState("");
 	const [speak1, setspeak1] = useState("");
 	const [res, setres] = useState(false);
-	useEffect(() => {
-		if ("speechSynthesis" in window) {
-			var msg = new SpeechSynthesisUtterance();
-			msg.text = speak1;
-			window.speechSynthesis.speak(msg);
-		} else {
-			alert("Sorry, your browser doesn't support text to speech!");
-		}
-	}, [res]);
+	// useEffect(() => {
+	// 	if ("speechSynthesis" in window) {
+	// 		var msg = new SpeechSynthesisUtterance();
+	// 		msg.voice =
+	// 			window.speechSynthesis
+	// 				.getVoices()
+	// 				.find((v) => v.name === "Microsoft Heera - English (India)") || null;
+	// 		msg.pitch = 1.4;
+	// 		msg.rate = 0.8;
+	// 		msg.volume = 2;
+	// 		msg.text = speak1;
+	// 		window.speechSynthesis.speak(msg);
+	// 	} else {
+	// 		alert("Sorry, your browser doesn't support text to speech!");
+	// 	}
+	// }, [res]);
 
 	useEffect(() => {
 		if (res) setTimeout(() => setres(false), 2000);

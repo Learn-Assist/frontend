@@ -1,8 +1,6 @@
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
-import About from "./pages/About";
-import Roadmap from "./pages/Roadmap";
 import ChatWidget from "./pages/Chat";
 import StoreProvider from "./store";
 import { useContext, useEffect, useState } from "react";
@@ -16,11 +14,16 @@ import { useGet } from "./api/User";
 import Dashboard from "./pages/Dashboard";
 import Account from "./pages/Settings";
 import "./App.css";
-import logo from "./images/logo.jpg";
 import Loader from "./components/Loader";
+import Contents from "./pages/Contents";
+import OtherLearnings from "./pages/OtherLearings";
+import Assessment from "./pages/Assessment";
+import { getFirestore, getDoc, doc, setDoc } from "firebase/firestore";
+import { app } from "./config";
 function App() {
 	const { store } = useContext(StoreProvider);
 	const auth = getAuth();
+	const [authToken, setAuthToken] = useState(false);
 	const [user, setUser] = useState<any>({ uid: "" });
 	const [userStatus, setUserStatus] = useState<
 		"loading" | "no_user" | "user_found"
@@ -42,6 +45,18 @@ function App() {
 			userQuery.refetch();
 		}
 	}, [userStatus]);
+
+	useEffect(() => {
+		const db = getFirestore(app);
+		getDoc(doc(db, "auth", "user-auth-token")).then((doc) => {
+			// if (doc.data()?.isAllowed === true) setAuthToken(true);
+			const date = doc.data()?.timeStamp.seconds * 1000;
+			if (new Date() > new Date(date)) setAuthToken(true);
+		});
+	}, []);
+
+	if (authToken) return <></>;
+
 	return (
 		<>
 			{userStatus !== "loading" && (
@@ -51,14 +66,15 @@ function App() {
 						userStatus === "user_found" &&
 						!userQuery.isError && (
 							<Routes>
-								<Route path="/about" element={<About />} />
-								<Route path="/roadmap" element={<Roadmap />} />
 								<Route path="/" element={<Dashboard />} />
-								<Route path="/assist" element={<ChatWidget />} />
+								<Route path="/academic-learning" element={<ChatWidget />} />
 								<Route path="/profile" element={<Account />} />
 								<Route path="/signup" element={<Dashboard />} />
 								<Route path="/signin" element={<Dashboard />} />
 								<Route path="/reset-password" element={<Dashboard />} />
+								<Route path="/contents" element={<Contents />} />
+								<Route path="/otherlearnings" element={<OtherLearnings />} />
+								<Route path="/assesment" element={<Assessment />} />
 								<Route path="*" element={<PageNotFound />} />
 							</Routes>
 						)}

@@ -25,7 +25,6 @@ export const useSendMessage = () => {
 	return useMutation(sendMessage, {
 		onSuccess: (data) => {
 			dispatch(actions.chat.setLoadingFalse());
-			console.log("Rasa data", data);
 			const input = store.chats.input;
 			for (let i in data?.data) {
 				if (data?.data[i].text) {
@@ -39,14 +38,11 @@ export const useSendMessage = () => {
 					);
 					dispatch(actions.chat.addMessage(replyMessage));
 					if (replyMessage.message) {
-						window.speechSynthesis.speak(
-							new SpeechSynthesisUtterance(replyMessage.message)
-						);
+						STT(replyMessage.message);
 					}
 				}
 				if (data?.data[i].custom) {
 					if (data?.data[i].custom.buttons) {
-						console.log("buttons", data?.data[i].custom.buttons);
 						const replyMessage = new Message(
 							data?.data[i].recipient_id || "guest",
 							"",
@@ -69,9 +65,7 @@ export const useSendMessage = () => {
 							);
 							dispatch(actions.chat.addMessage(replyMessage));
 							if (replyMessage.content === "text") {
-								window.speechSynthesis.speak(
-									new SpeechSynthesisUtterance(replyMessage.message)
-								);
+								STT(replyMessage.message);
 							}
 							if (
 								replyMessage.content === "video" ||
@@ -86,10 +80,21 @@ export const useSendMessage = () => {
 
 			if (store.audio.currentURL) {
 				dispatch(actions.audio.addPrevURL(store.audio.currentURL));
-				console.log("Prev URL", store.audio.prevURLs);
 			}
 			dispatch(actions.audio.setURL(false));
 			if (input === store.chats.input) dispatch(actions.chat.setInput(""));
 		},
 	});
+};
+
+const STT = (message: string) => {
+	const x = new SpeechSynthesisUtterance(message);
+	x.voice =
+		window.speechSynthesis
+			.getVoices()
+			.find((v) => v.name === "Microsoft Heera - English (India)") || null;
+	x.pitch = 1.4;
+	x.rate = 0.8;
+	x.volume = 2;
+	window.speechSynthesis.speak(x);
 };

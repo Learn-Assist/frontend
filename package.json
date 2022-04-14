@@ -24,6 +24,7 @@
 		"react-router-dom": "^6.0.2",
 		"react-say": "^2.1.0",
 		"react-scripts": "4.0.3",
+		"react-syntax-highlighter": "^15.5.0",
 		"react-transition-group": "^4.4.2",
 		"recorder-js": "^1.0.7",
 		"sass": "^1.43.4",
