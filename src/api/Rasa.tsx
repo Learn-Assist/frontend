@@ -87,7 +87,7 @@ export const useSendMessage = () => {
 	});
 };
 
-const STT = (message: string) => {
+export const STT = (message: string) => {
 	const x = new SpeechSynthesisUtterance(message);
 	x.voice =
 		window.speechSynthesis

@@ -3,6 +3,7 @@ import { BiBookContent } from "react-icons/bi";
 import { NavLink, useLocation } from "react-router-dom";
 import logo from "../images/logo.jpg";
 
+let bool = true;
 function Sidebar({ sidebarOpen, setSidebarOpen }: any) {
 	const location = useLocation();
 	const { pathname } = location;
@@ -14,7 +15,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }: any) {
 	const [sidebarExpanded, setSidebarExpanded] = useState<any>(
 		storedSidebarExpanded === null ? false : storedSidebarExpanded === "true"
 	);
-
+	// while (bool) {}
 	// close on click outside
 	useEffect(() => {
 		const clickHandler = ({ target }: any) => {
@@ -51,7 +52,6 @@ function Sidebar({ sidebarOpen, setSidebarOpen }: any) {
 			);
 		}
 	}, [sidebarExpanded]);
-
 	return (
 		<div>
 			{/* Sidebar backdrop (mobile only) */}
@@ -155,7 +155,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }: any) {
 							</li>
 
 							{/* Academic */}
-							{/* <li
+							<li
 								className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${
 									pathname === "/" && "bg-gray-900"
 								}`}
@@ -188,7 +188,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }: any) {
 										</span>
 									</div>
 								</NavLink>
-							</li> */}
+							</li>
 
 							{/* Smart */}
 							<li
@@ -256,7 +256,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }: any) {
 							</li>
 
 							{/* Content */}
-							{/* <li
+							<li
 								className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${
 									pathname === "/" && "bg-gray-900"
 								}`}
@@ -279,7 +279,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }: any) {
 										</span>
 									</div>
 								</NavLink>
-							</li> */}
+							</li>
 
 							{/* Account */}
 							<li

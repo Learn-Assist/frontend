@@ -6,12 +6,12 @@ function Footer() {
 			<footer className="p-10  footer bg-base-200 text-base-content footer-center border-t-2 border-gray-200">
 				<div className="grid grid-flow-col gap-4">
 					<a
-						href="https://learn-assist.me/about-us"
+						href="https://learn-assist.me/about"
 						className="link link-hover"
 						target="_blank"
 						rel="noreferrer"
 					>
-						<b>&lt; About us &gt;</b>
+						<b>&lt; About &gt;</b>
 					</a>
 				</div>
 				<div>

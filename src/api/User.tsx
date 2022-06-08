@@ -31,7 +31,6 @@ export const useGet = (uid: string) => {
 	return useQuery("user", () => get(uid), {
 		enabled: !!uid,
 		refetchOnReconnect: false,
-		refetchOnWindowFocus: false,
 		onSuccess: (user) => {
 			dispatch(actions.user.setUser(user.data));
 			if (!user.data?.uid) alert("user is null");

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useMutation } from "react-query";
 import { OpenAIApiUrl as url } from "../config";
+import { STT } from "./Rasa";
 const py2nl = (code: string) => {
 	const str = code + ' \n """ \n Here\'s what the above code is doing: \n     ';
 	return axios.post(url + "/api/py2nl", { code: str });
@@ -36,35 +37,45 @@ const getQuestionsFromFile = (input: any) => {
 
 export const usePy2Nl = () => {
 	return useMutation(py2nl, {
-		onSuccess: (data) => {},
+		onSuccess: (data) => {
+			STT(data.data);
+		},
 		onError: (error) => {},
 	});
 };
 
 export const useNl2Py = () => {
 	return useMutation(nl2Py, {
-		onSuccess: (data) => {},
+		onSuccess: (data) => {
+			STT(data.data);
+		},
 		onError: (error) => {},
 	});
 };
 
 export const useQuickDoubts = () => {
 	return useMutation(quickDoubts, {
-		onSuccess: (data) => {},
+		onSuccess: (data) => {
+			STT(data.data);
+		},
 		onError: (error) => {},
 	});
 };
 
 export const useGetNotes = () => {
 	return useMutation(getNotes, {
-		onSuccess: (data) => {},
+		onSuccess: (data) => {
+			STT(data.data);
+		},
 		onError: (error) => {},
 	});
 };
 
 export const useSuggestion = () => {
 	return useMutation(getSuggestion, {
-		onSuccess: (data) => {},
+		onSuccess: (data) => {
+			STT(data.data);
+		},
 		onError: (error) => {},
 	});
 };

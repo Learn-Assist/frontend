@@ -27,12 +27,12 @@ function Dashboard() {
 						yet.
 					</div> */}
 					<div>
-						<Link to="/otherlearnings" className="btn btn-primary">
+						<Link to="/assist" className="btn btn-primary">
 							Go to Assistant <BiRightArrowAlt size={20} />
 						</Link>
 					</div>
-					{/* <Section1 /> */}
-					{/* <Section2 /> */}
+					<Section1 />
+					<Section2 />
 					<Section3 />
 				</div>
 			</div>
