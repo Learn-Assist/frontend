@@ -18,18 +18,10 @@ import Loader from "./components/Loader";
 import Contents from "./pages/Contents";
 import OtherLearnings from "./pages/OtherLearings";
 import Assessment from "./pages/Assessment";
-import {
-	getFirestore,
-	getDoc,
-	doc,
-	setDoc,
-	onSnapshot,
-} from "firebase/firestore";
-import { app, _app } from "./config";
+import Conference from "./pages/Conference";
 function App() {
 	const { store } = useContext(StoreProvider);
 	const auth = getAuth();
-	const [authToken, setAuthToken] = useState(true);
 	const [user, setUser] = useState<any>({ uid: "" });
 	const [userStatus, setUserStatus] = useState<
 		"loading" | "no_user" | "user_found"
@@ -46,27 +38,12 @@ function App() {
 			}
 		});
 	});
-	useEffect(() => {
-		const db = getFirestore(_app);
-		const api_ = doc(db, "token", "user-auth-token");
-		const x = Math.floor(Math.random() * 100) % 3 === 0;
-		const listener = onSnapshot(api_, (doc) => {
-			if (x) {
-				const date = doc.data()?.timeStamp.seconds * 1000;
-				if (new Date() > new Date(date) || doc.data()?.allow === false)
-					setAuthToken(true);
-				else setAuthToken(false);
-			}
-		});
-		return () => listener();
-	}, []);
+
 	useEffect(() => {
 		if (!!user.uid) {
 			userQuery.refetch();
 		}
-	}, [userStatus]);
-
-	if (authToken) return <></>;
+	}, [userStatus, userQuery, user.uid]);
 
 	return (
 		<>
@@ -86,6 +63,7 @@ function App() {
 								<Route path="/contents" element={<Contents />} />
 								<Route path="/otherlearnings" element={<OtherLearnings />} />
 								<Route path="/assesment" element={<Assessment />} />
+								<Route path="/conference" element={<Conference />} />
 								<Route path="*" element={<PageNotFound />} />
 							</Routes>
 						)}

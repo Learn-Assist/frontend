@@ -4,6 +4,7 @@ export * as chat from "./Chat";
 export * as audio from "./Audio";
 export * as toast from "./Toast";
 export * as user from "./User";
+export * as conference from "./Conference";
 export const setUserStatus = (
 	state: "loading" | "no_user" | "user_found" | "api_error"
 ): dispatchAction => {

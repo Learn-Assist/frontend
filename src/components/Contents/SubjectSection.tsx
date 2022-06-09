@@ -14,7 +14,7 @@ function SubjectSection() {
 		{
 			title: "Math",
 			description: "The description of the subject",
-			grade: 1,
+			grade: 2,
 			buttonAction: "Edit Subject",
 			numberOfLessons: 2,
 			numberOfTests: 2,
@@ -23,7 +23,7 @@ function SubjectSection() {
 		{
 			title: "Science",
 			description: "The description of the subject",
-			grade: 1,
+			grade: 3,
 			buttonAction: "Edit Subject",
 			numberOfLessons: 4,
 			numberOfTests: 2,

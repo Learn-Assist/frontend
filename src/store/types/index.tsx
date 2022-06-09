@@ -1,10 +1,11 @@
+import { Conference } from "./Conference";
 import { toast } from "./toast";
 
 export * from "./Audio";
 export * from "./Chat";
 export * from "./User";
 export * from "./toast";
-
+export * from "./Conference";
 export interface AppState {
 	app: {
 		userStatus: string;
@@ -32,6 +33,7 @@ export interface AppState {
 		prevURLs: Array<string>;
 	};
 	toasts: Array<toast>;
+	conference: Conference;
 }
 
 export interface ActionCreator {

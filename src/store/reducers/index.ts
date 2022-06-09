@@ -3,6 +3,7 @@ import chat from "./Chat";
 import audio from "./Audio";
 import toast from "./Toast";
 import user from "./User";
+import conference from "./Conference";
 
 const combineReducers = (slices: any) => (state: any, action: dispatchAction) =>
 	Object.keys(slices).reduce(
@@ -35,6 +36,7 @@ const reducers = {
 	audio: audio,
 	toasts: toast,
 	user: user,
+	conference: conference,
 };
 
 export const rootReducer = combineReducers(reducers);

@@ -45,6 +45,11 @@ export const initialState: AppState = {
 		prevURLs: [],
 	},
 	toasts: [],
+	conference: {
+		peerConnection: new RTCPeerConnection(),
+		localStream: new MediaStream(),
+		remoteStream: new MediaStream(),
+	},
 };
 
 export const useStore = (): {

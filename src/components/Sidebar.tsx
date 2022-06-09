@@ -3,7 +3,6 @@ import { BiBookContent } from "react-icons/bi";
 import { NavLink, useLocation } from "react-router-dom";
 import logo from "../images/logo.jpg";
 
-let bool = true;
 function Sidebar({ sidebarOpen, setSidebarOpen }: any) {
 	const location = useLocation();
 	const { pathname } = location;
@@ -15,8 +14,6 @@ function Sidebar({ sidebarOpen, setSidebarOpen }: any) {
 	const [sidebarExpanded, setSidebarExpanded] = useState<any>(
 		storedSidebarExpanded === null ? false : storedSidebarExpanded === "true"
 	);
-	// while (bool) {}
-	// close on click outside
 	useEffect(() => {
 		const clickHandler = ({ target }: any) => {
 			if (!sidebar.current || !trigger.current) return;
